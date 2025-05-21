@@ -6,7 +6,7 @@ import { itemSatisfied, rotateXZ } from './utils.js';
 import * as skills from '../library/skills.js';
 
 
-export class NPCContoller {
+export class NPCController {
     constructor(agent) {
         this.agent = agent;
         this.data = NPCData.fromObject(agent.prompter.profile.npc);

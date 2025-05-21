@@ -207,6 +207,27 @@ const modes = [
         }
     },
     {
+        name: 'wander',
+        description: 'Move to a random nearby location if idle for a while.',
+        interrupts: ['defaults'],
+        on: true,
+        active: false,
+        idleDelay: 10000,
+        nextMove: Date.now() + 10000,
+        update: async function(agent) {
+            if (!agent.isIdle()) {
+                this.nextMove = Date.now() + this.idleDelay;
+                return;
+            }
+            if (Date.now() > this.nextMove) {
+                execute(this, agent, async () => {
+                    await skills.moveAway(agent.bot, 8);
+                });
+                this.nextMove = Date.now() + this.idleDelay;
+            }
+        }
+    },
+    {
         name: 'idle_staring',
         description: 'Animation to look around at entities when idle.',
         interrupts: [],

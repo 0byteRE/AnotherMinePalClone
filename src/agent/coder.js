@@ -256,10 +256,10 @@ export class Coder {
 
         await new Promise((resolve, reject) => {
             const promiseId = Date.now(); // Use timestamp as a unique ID
-            const timeout = setTimeout(() => {
+            const timeout = setTimeout(async () => {
                 if (this.executing) {
                     console.log(`[CLEANKILL] Code execution refused to stop after 20 seconds. Promise ID: ${promiseId}`);
-                    this.agent.cleanKill('Code execution refused to stop after 20 seconds. Killing process.');
+                    await this.agent.cleanKill('Code execution refused to stop after 20 seconds. Killing process.');
                     reject(new Error('Code execution timeout'));
                 }
             }, 20 * 1000); // 20 seconds timeout
