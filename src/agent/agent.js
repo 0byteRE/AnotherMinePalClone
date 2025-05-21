@@ -5,7 +5,7 @@ import { Prompter } from './prompter.js';
 import { initModes } from './modes.js';
 import MCData from '../utils/mcdata.js';
 import { containsCommand, commandExists, executeCommand, truncCommandMessage } from './commands/index.js';
-import { NPCContoller } from './npc/controller.js';
+import { NPCController } from './npc/controller.js';
 import { MemoryBank } from './memory_bank.js';
 import fs from 'fs/promises';
 import { queryList } from './commands/queries.js';
@@ -63,7 +63,7 @@ export class Agent {
         this.owner = this.settings.player_username
         this.history = new History(this);
         this.coder = new Coder(this);
-        this.npc = new NPCContoller(this);
+        this.npc = new NPCController(this);
         this.memory_bank = new MemoryBank();
 
         console.log('Logging in...');
@@ -358,20 +358,20 @@ export class Agent {
         this.bot.on('error' , (err) => {
             console.error('Error event!', err);
         });
-        this.bot.on('end', (reason) => {
+        this.bot.on('end', async (reason) => {
             console.warn('Bot disconnected! Killing agent process.', reason)
             console.log('[CLEANKILL] Bot disconnected.');
-            this.cleanKill('Bot disconnected! Killing agent process.');
+            await this.cleanKill('Bot disconnected! Killing agent process.');
         });
         this.bot.on('death', () => {
             this.coder.cancelResume();
             console.log("[CODERSTOP] Bot death.");
             this.coder.stop();
         });
-        this.bot.on('kicked', (reason) => {
+        this.bot.on('kicked', async (reason) => {
             console.warn('Bot kicked!', reason);
             console.log('[CLEANKILL] Bot kicked.');
-            this.cleanKill('Bot kicked! Killing agent process.', reason="KICK");
+            await this.cleanKill('Bot kicked! Killing agent process.', reason="KICK");
         });
         this.bot.on('messagestr', async (message, _, jsonMsg) => {
             if (jsonMsg.translate && jsonMsg.translate.startsWith('death') && message.startsWith(this.name)) {
@@ -417,10 +417,10 @@ export class Agent {
      * Performs a clean shutdown of the agent.
      * @param {string} msg - Message to log before shutting down.
      */
-    cleanKill(msg='Killing agent process...', reason = null) {
-        this.history.add('system', msg);
-        this.sendMessage('Goodbye world.')
-        this.history.save();
+    async cleanKill(msg='Killing agent process...', reason = null) {
+        await this.history.add('system', msg);
+        await this.sendMessage('Goodbye world.');
+        await this.history.save();
 
         if (reason === 'KICK') {
             process.exit(128);

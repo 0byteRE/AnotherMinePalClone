@@ -18,6 +18,7 @@
     "hunting": false,
     "item_collecting": true,
     "torch_placing": false,
+    "wander": true,
     "idle_staring": true,
     "cheat": false,
     "farming": false
