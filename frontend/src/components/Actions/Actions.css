@@ -1,0 +1,215 @@
+.actions {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center items horizontally */
+  margin-top: 20px;
+  width: 100%; /* Ensure actions container takes full width */
+}
+
+.action-button {
+  padding: 16px 32px;
+  background: var(--primary-color);
+  color: var(--bg-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s;
+  height: 60px; /* Increased height */
+  box-sizing: border-box;
+  margin-top: 20px;
+  width: 100%;
+  font-weight: 600; /* Make text bold */
+  font-size: 1.1rem; /* Make text larger */
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .actions {
+    gap: 15px;
+  }
+
+  .action-button {
+    width: 100%;
+  }
+}
+
+.voice-settings {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  gap: 10px; /* Space between the elements */
+  margin-bottom: 10px;
+}
+
+.microphone-icon {
+  width: 20px;
+  height: 20px;
+  transition: color 0.3s ease;
+}
+
+.microphone-icon.active {
+  stroke: #4caf50;
+}
+
+.microphone-icon.inactive {
+  stroke: #f44336;
+}
+
+.key-input {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--text-color);
+  box-sizing: border-box;
+  width: 100px; /* Reduced width */
+}
+
+.voice-settings select,
+.language-settings select,
+.input-device-settings select { /* Added input-device-settings select */
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--text-color);
+  box-sizing: border-box;
+  background-color: var(--bg-color); /* Ensure background color is set */
+  color: var(--text-color); /* Ensure text color is set */
+  margin-bottom: 10px;
+}
+
+.voice-settings input[readonly] {
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.language-settings {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  gap: 10px; /* Space between the elements */
+}
+
+.language-settings label {
+  display: block;
+}
+
+.language-settings select {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--text-color);
+  box-sizing: border-box;
+  background-color: var(--bg-color); /* Ensure background color is set */
+  color: var(--text-color); /* Ensure text color is set */
+}
+
+.feedback-button {
+  background: none;
+  color: orange;
+  text-decoration: underline;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px; /* Add space between buttons */
+}
+
+.submit-button {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px; /* Optional: Add space between buttons */
+}
+
+.submit-button:hover {
+  background-color: var(--secondary-color);
+}
+
+.discord-link {
+  color: orange;
+  text-decoration: underline;
+}
+
+.ok-button {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ok-button:hover {
+  background-color: var(--secondary-color);
+}
+
+.modal-content .button-group {
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+  margin-top: 20px; /* Optional: Add some space above the button */
+}
+
+.api-key-settings {
+  display: flex;
+  flex-direction: column;  /* Stack items vertically */
+  gap: 10px;
+  margin: 10px;
+  width: 100%;  /* Take full width */
+}
+
+.api-key-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.api-key-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* New container for API key input and model select */
+.api-key-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.api-key-input-group, .model-select-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.api-key-input {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--text-color);
+  box-sizing: border-box;
+  flex: 1;  /* Take remaining space */
+  min-width: 250px;  /* Minimum width */
+}
+
+.model-select {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--text-color);
+  box-sizing: border-box;
+  background-color: var(--bg-color);
+  min-width: 150px;  /* Minimum width */
+}
